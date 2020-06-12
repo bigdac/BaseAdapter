@@ -11,6 +11,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.li.adperlibrary.AdapterOnItemClick;
+import com.li.adperlibrary.AdapterOnLongItemClick;
+import com.li.adperlibrary.MixtureLayout;
 import com.li.adperlibrary.OnItemClick;
 
 import java.util.ArrayList;
@@ -21,30 +23,45 @@ import java.util.List;
  * 版本：1.0
  * 创建日期：2020/6/8
  * 描述：普通的adpter
- *
  */
 public class MainActivity extends AppCompatActivity {
-    RecyclerView recyclerView ;
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.rv_demo);
         List<String> strings = new ArrayList<>();
-        for (int i=0;i<20;i++){
-            strings.add("第"+i+"个");
+        for (int i = 0; i < 20; i++) {
+            strings.add("第" + i + "个");
         }
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this,strings,R.layout.item_simple);
-        simpleAdapter.SetOnClickListener(new AdapterOnItemClick<String>() {
+//        SimpleAdapter simpleAdapter = new SimpleAdapter(this,strings,R.layout.item_simple);
+//        simpleAdapter.SetOnClickListener(new AdapterOnItemClick<String>() {
+//            @Override
+//            public void click(View view, String s, int type, int pos) {
+//                Log.e("TAG", "click:-------> "+s+"...." +type+"......"+pos);
+//            }
+//        });
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setAdapter(simpleAdapter);
+        MixLayoutAdapter mixLayoutAdapter = new MixLayoutAdapter(this, strings);
+        mixLayoutAdapter.SetOnClickListener(new AdapterOnItemClick<String>() {
             @Override
             public void click(View view, String s, int type, int pos) {
-                Log.e("TAG", "click:-------> "+s+"...." +type+"......"+pos);
+                Log.e("TAG", "click:-------> " + s + "...." + type + "......" + pos);
+            }
+        });
+        mixLayoutAdapter.SetOnLongClickListener(new AdapterOnLongItemClick<String>() {
+            @Override
+            public void click(View view, String s, int type, int pos) {
+                Log.e("长点击TAG", "click:-------> " + s + "...." + type + "......" + pos);
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(simpleAdapter);
-    }
+        recyclerView.setAdapter(mixLayoutAdapter);
 
+    }
 
 
 }

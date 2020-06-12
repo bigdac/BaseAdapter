@@ -79,10 +79,11 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public void setOnLongItemClick(int viewId, final OnLongItemClick onLongItemClick){
         View view = getView(viewId);
-        view.setOnClickListener(new View.OnClickListener() {
+        view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
                 onLongItemClick.click(v);
+                return true;
             }
         });
     }

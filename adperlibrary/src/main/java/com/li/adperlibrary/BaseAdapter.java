@@ -1,6 +1,8 @@
 package com.li.adperlibrary;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ public abstract class   BaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> 
     private Context mContext;
     private LayoutInflater mLayoutInflater;
     private ViewHolder mViewHolder ;
+    private MixtureLayout<T> mMixtureLayout ;
 
     public BaseAdapter(Context context, List<T>  data ,int layoutId) {
         this.mContext = context;
@@ -30,12 +33,30 @@ public abstract class   BaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> 
         this.mLayoutInflater = LayoutInflater.from(context);
     }
 
+    public BaseAdapter(Context context, List<T>  data ,MixtureLayout<T> mixtureLayout) {
+        this(context,data,-1);
+        this.mMixtureLayout = mixtureLayout;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (mMixtureLayout!=null){
+            mLayoutId = viewType;
+        }
+        if (mLayoutId== -1)
+            throw new Resources.NotFoundException("没有找到该mLayoutId");
         View  view = mLayoutInflater.inflate(mLayoutId,parent,false);
         mViewHolder = new ViewHolder(view);
         return mViewHolder;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (mMixtureLayout!=null){
+            return mMixtureLayout.getLayoutId(mData.get(position),position);
+        }
+        return super.getItemViewType(position);
     }
 
     @Override
