@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.li.adperlibrary.ViewHolder;
+import com.li.adperlibrary.base.ViewHolder;
 
 /**
  * @author li

@@ -4,11 +4,11 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
-import com.li.adperlibrary.BaseAdapter;
-import com.li.adperlibrary.MixtureLayout;
-import com.li.adperlibrary.OnItemClick;
-import com.li.adperlibrary.OnLongItemClick;
-import com.li.adperlibrary.ViewHolder;
+import com.li.adperlibrary.base.BaseAdapter;
+import com.li.adperlibrary.base.MixtureLayout;
+import com.li.adperlibrary.base.OnItemClick;
+import com.li.adperlibrary.base.OnLongItemClick;
+import com.li.adperlibrary.base.ViewHolder;
 
 import java.util.List;
 

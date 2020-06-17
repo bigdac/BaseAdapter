@@ -1,4 +1,4 @@
-package com.li.adperlibrary;
+package com.li.adperlibrary.base;
 
 import android.util.SparseArray;
 import android.view.InflateException;
@@ -18,6 +18,7 @@ import java.lang.ref.WeakReference;
  * 描述：
  */
 public class ViewHolder extends RecyclerView.ViewHolder {
+//    缓存View
     private SparseArray <WeakReference<View>> mViews;
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -35,7 +36,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         }
         return (T) view1;
     }
-
+//  链式调用设置文字
     public ViewHolder setText (int viewId ,CharSequence charSequence){
         TextView view = getView(viewId);
         if (view==null){
@@ -66,7 +67,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return  this;
     }
 
-//    private OnItemClick onItemClick;
+
+//   onBindViewHolder方法内实现点击事件
     public void setOnItemClick(int viewId, final OnItemClick onItemClick){
         View view = getView(viewId);
         view.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +78,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
-
+    //   onBindViewHolder方法内实现长按点击事件
     public void setOnLongItemClick(int viewId, final OnLongItemClick onLongItemClick){
         View view = getView(viewId);
         view.setOnLongClickListener(new View.OnLongClickListener() {
@@ -87,6 +89,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
+
 //  接口 扩展使用各种网络图片的使用
 
     public interface ImageLoader{

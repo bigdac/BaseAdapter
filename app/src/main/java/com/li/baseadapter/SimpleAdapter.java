@@ -4,11 +4,9 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
-import com.li.adperlibrary.AdapterOnItemClick;
-import com.li.adperlibrary.BaseAdapter;
-import com.li.adperlibrary.OnItemClick;
-import com.li.adperlibrary.OnLongItemClick;
-import com.li.adperlibrary.ViewHolder;
+import com.li.adperlibrary.base.BaseAdapter;
+import com.li.adperlibrary.base.OnItemClick;
+import com.li.adperlibrary.base.ViewHolder;
 
 import java.util.List;
 
@@ -57,8 +55,15 @@ public class SimpleAdapter extends BaseAdapter<String> {
                 getAdapterOnItemClick().click(v,strings,3,position);
             }
         });
-
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                getAdapterOnLongItemClick().click(v,strings,1,position);
+                return true;
+            }
+        });
     }
+
 
 
 }
