@@ -20,9 +20,15 @@ import java.lang.ref.WeakReference;
 public class ViewHolder extends RecyclerView.ViewHolder {
 //    缓存View
     private SparseArray <WeakReference<View>> mViews;
-    public ViewHolder(@NonNull View itemView) {
+    private int mLayoutId;
+    public ViewHolder(@NonNull View itemView,int layoutId) {
         super(itemView);
+        this.mLayoutId = layoutId;
         mViews = new SparseArray<>();
+    }
+
+    public int getLayoutId() {
+        return mLayoutId;
     }
 
     public <T extends View> T getView(int viewId){

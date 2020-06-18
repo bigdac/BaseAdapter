@@ -38,42 +38,42 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 20; i++) {
             strings.add("第" + i + "个");
         }
-        final SimpleAdapter simpleAdapter = new SimpleAdapter(this,new ArrayList<String>(),R.layout.item_simple);
-        simpleAdapter.SetOnClickListener(new AdapterOnItemClick<String>() {
-            @Override
-            public void click(View view, String s, int type, int pos) {
-                Log.e("TAG", "click:-------> "+s+"...." +type+"......"+pos);
-                simpleAdapter.remove(s);
-            }
-        });
-        simpleAdapter.SetOnLongClickListener(new AdapterOnLongItemClick<String>() {
-            @Override
-            public void click(View view, String s, int type, int pos) {
-                    simpleAdapter.remove(pos);
-            }
-        });
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(simpleAdapter);
-        simpleAdapter.upData(strings);
-
-//        MixLayoutAdapter mixLayoutAdapter = new MixLayoutAdapter(this, strings);
-//        mixLayoutAdapter.SetOnClickListener(new AdapterOnItemClick<String>() {
+//        final SimpleAdapter simpleAdapter = new SimpleAdapter(this,new ArrayList<String>(),R.layout.item_simple);
+//        simpleAdapter.SetOnClickListener(new AdapterOnItemClick<String>() {
 //            @Override
 //            public void click(View view, String s, int type, int pos) {
-//                Log.e("TAG", "click:-------> " + s + "...." + type + "......" + pos);
+//                Log.e("TAG", "click:-------> "+s+"...." +type+"......"+pos);
+//                simpleAdapter.remove(s);
 //            }
 //        });
-//        mixLayoutAdapter.SetOnLongClickListener(new AdapterOnLongItemClick<String>() {
+//        simpleAdapter.SetOnLongClickListener(new AdapterOnLongItemClick<String>() {
 //            @Override
 //            public void click(View view, String s, int type, int pos) {
-//                Log.e("长点击TAG", "click:-------> " + s + "...." + type + "......" + pos);
+//                    simpleAdapter.remove(pos);
 //            }
 //        });
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter(mixLayoutAdapter);
-//        View view = LayoutInflater.from(this).inflate(R.layout.layout_header,recyclerView,false);
-//        recyclerView.addHeaderView(view);
-//        recyclerView.addFooterView(view);
+//        recyclerView.setAdapter(simpleAdapter);
+//        simpleAdapter.upData(strings);
+
+        MixLayoutAdapter mixLayoutAdapter = new MixLayoutAdapter(this, strings);
+        mixLayoutAdapter.SetOnClickListener(new AdapterOnItemClick<String>() {
+            @Override
+            public void click(View view, String s, int type, int pos) {
+                Log.e("TAG", "click:-------> " + s + "...." + type + "......" + pos);
+            }
+        });
+        mixLayoutAdapter.SetOnLongClickListener(new AdapterOnLongItemClick<String>() {
+            @Override
+            public void click(View view, String s, int type, int pos) {
+                Log.e("长点击TAG", "click:-------> " + s + "...." + type + "......" + pos);
+            }
+        });
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(mixLayoutAdapter);
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_header,recyclerView,false);
+        recyclerView.addHeaderView(view);
+        recyclerView.addFooterView(view);
     }
 
 

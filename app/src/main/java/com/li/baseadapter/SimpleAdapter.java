@@ -38,27 +38,27 @@ public class SimpleAdapter extends BaseAdapter<String> {
             public void click(View view) {
                 Log.e("TAG", "click: ----------" );
                 //               回调到activity中 根据type判断谁点击
-                getAdapterOnItemClick().click(view,strings,1,position);
+                setActivityItemClick(view,strings,1,position);
             }
         });
         holder.setOnItemClick(R.id.tv_title1, new OnItemClick() {
             @Override
             public void click(View view) {
                 Log.e("TAG", "click: ----------" );
-                getAdapterOnItemClick().click(view,strings,2,position);
+                setActivityItemClick(view,strings,2,position);
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e("TAG", "click: ----------" );
-                getAdapterOnItemClick().click(v,strings,3,position);
+                setActivityItemClick(v,strings,3,position);
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                getAdapterOnLongItemClick().click(v,strings,1,position);
+                setActivityLongItemClick(v,strings,1,position);
                 return true;
             }
         });

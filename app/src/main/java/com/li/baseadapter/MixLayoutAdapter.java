@@ -37,6 +37,7 @@ public class MixLayoutAdapter extends BaseAdapter<String> {
     @Override
     protected void bindViewHolder(ViewHolder holder, final String strings, final int position) {
 //      链式调用
+        Log.e("TAG", "onCreateViewHolder: -->"+ (holder.getLayoutId()==R.layout.item_simple)+ (holder.getLayoutId()==R.layout.item_simple2));
         holder.setText(R.id.tv_title1,strings)
                 .setText(R.id.tv_title2,"哈哈哈");
 //       自定义网咯图片解析方式
@@ -49,28 +50,28 @@ public class MixLayoutAdapter extends BaseAdapter<String> {
             public void click(View view) {
                 Log.e("TAG", "click: ----------" );
 //               回调到activity中 根据type判断谁点击
-                getAdapterOnItemClick().click(view,strings,1,position);
+                setActivityItemClick(view,strings,1,position);
             }
         });
         holder.setOnItemClick(R.id.tv_title1, new OnItemClick() {
             @Override
             public void click(View view) {
                 Log.e("TAG", "click: ----------" );
-                getAdapterOnItemClick().click(view,strings,2,position);
+                setActivityItemClick(view,strings,2,position);
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e("TAG", "click: ----------" );
-                getAdapterOnItemClick().click(v,strings,3,position);
+                setActivityItemClick(v,strings,3,position);
             }
         });
         holder.setOnLongItemClick(R.id.iv_pic, new OnLongItemClick() {
             @Override
             public void click(View view) {
                 Log.e("TAG", "Longclick: ----------" );
-                getAdapterOnLongItemClick().click(view,strings,1,position);
+                setActivityLongItemClick(view,strings,1,position);
             }
         });
     }
