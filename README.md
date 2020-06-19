@@ -6,6 +6,17 @@
 
 #### 简单使用
 
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+		dependencies {
+    	        implementation 'com.github.bigdac:BaseAdapter:1.0.3'
+    	}
+
 public class SimpleAdapter extends BaseAdapter<String> {
     private Context mContext;
     public SimpleAdapter(Context context, List<String> data, int layoutId) {
